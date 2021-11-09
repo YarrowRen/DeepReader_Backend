@@ -1,0 +1,12 @@
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (1, '222019321102062', '尹思静', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (2, '222019321102063', '王钰晓', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (3, '222019321102064', '郜梦研', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (4, '222019321102065', '张涵婷', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (5, '222019321102066', '高雨双', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (6, '222019321102067', '嵇昊然', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (7, '222019321102068', '杨筱', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (8, '222019321102069', '罗笳绮', '女', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (9, '222019321102070', '胡澎湃', '男', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (10, '222019321102071', '武思玉', '男', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (11, '222019321102072', '吴家舟', '男', '汉', '123456');
+INSERT INTO `user_info` (`id`, `schNum`, `name`, `sex`, `nation`, `pwd`) VALUES (12, '222019321102073', '任博宇', '男', '汉', '123456');

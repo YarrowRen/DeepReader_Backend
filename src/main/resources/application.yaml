@@ -1,0 +1,25 @@
+server:
+  port: 8081
+  tomcat:
+    relaxedPathChars: '<,>,[,\,],^,`,{,|,}'
+    relaxedQueryChars: '<,>,[,\,],^,`,{,|,}'
+
+
+spring:
+  application:
+    name: bookstore-login
+  # 配置数据库连接池
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bookstore
+    username: root
+    password: renboyu010214
+
+mybatis:
+  # 配置实体类别名 包路径
+  type-aliases-package: cn.ywrby.domain
+  # 配置映射文件路径
+  mapper-locations: classpath:mapper/*.xml
+  # 配置日志文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

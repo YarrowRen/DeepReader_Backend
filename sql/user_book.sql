@@ -1,0 +1,10 @@
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1000517);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1060723);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1000531);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1102259);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1029553);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1119522);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1026425);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1398395);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1060117);
+INSERT INTO `user_book` (`userId`, `bookId`) VALUES (1, 1400428);

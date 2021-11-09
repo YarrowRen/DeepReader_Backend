@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.BookMapper">
+    <select id="getBookListByUsername" resultType="Book">
+        SELECT b.* from book_info b,user_info u, user_book ub where u.id=ub.userId and b.id=ub.bookId and u.schNum= #{username}
+    </select>
+
+    <select id="getSimplifyBookListByClassifyId" resultType="Book">
+        SELECT b.id,b.name,b.author,b.pages FROM classify_info c,book_info b WHERE c.id=b.classifyId and c.id=#{classifyId}
+    </select>
+
+    <select id="getBookList" resultType="Book">
+        select * from book_info
+    </select>
+
+    <select id="getBookContent" resultType="java.lang.String">
+        select content from book_content where bookId=#{bookId}
+    </select>
+</mapper>

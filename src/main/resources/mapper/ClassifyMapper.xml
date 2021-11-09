@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.ClassifyMapper">
+    <select id="getClassifyList" resultType="Classify">
+        SELECT * FROM classify_info
+    </select>
+</mapper>

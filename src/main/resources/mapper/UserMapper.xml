@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.UserMapper">
+    <select id="findAll" resultType="User">
+        select * from user_info
+    </select>
+
+    <select id="findUserByUserAndPwd" resultType="User">
+        select * from user_info where schNum= #{username} and pwd = #{pwd} limit 1
+    </select>
+
+    <select id="findUserByUsername" resultType="User">
+        select * from user_info where schNum= #{username} limit 1
+    </select>
+
+    <select id="findClassByUsername" resultType="UserClass">
+        SELECT m.major,c.college,uc.clsNo
+        from major_info m,college_info c,user_cls uc,user_info u
+        WHERE uc.userId=u.id
+          and m.collegeId=c.id
+          and uc.majorId=m.id
+          and u.schNum= #{username}
+    </select>
+
+    <update id="updateUserInfo">
+        update user_info set name=#{name},pwd=#{password} where schNum=#{username}
+    </update>
+
+    <insert id="insertUserBookList">
+        insert into user_book values (#{userId}, #{bookId})
+    </insert>
+</mapper>
