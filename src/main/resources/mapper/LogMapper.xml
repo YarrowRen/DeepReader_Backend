@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.LogMapper">
+
+    <select id="getUserBookLog" resultType="Log">
+        SELECT * from log_info WHERE userId=#{userId} and bookId=#{bookId}
+    </select>
+
+    <insert id="insertBookView">
+        insert into log_info values (#{userId},#{bookId},#{book_selection_click},#{book_read_time},#{book_exam_click})
+    </insert>
+
+    <update id="updateBookView">
+        update log_info set book_selection_click=#{book_selection_click},book_exam_click=#{book_exam_click},book_read_time=#{book_read_time}
+        where userId=#{userId} and bookId=#{bookId}
+    </update>
+
+    <select id="userReadCount" resultType="java.lang.Integer">
+        SELECT count(1) from user_read WHERE userId=#{userId}
+    </select>
+
+    <select id="userQuestionCount" resultType="java.lang.Integer">
+        SELECT count(1) from question_info WHERE userId=#{userId}
+    </select>
+
+    <select id="userAnswerCount" resultType="java.lang.Integer">
+        SELECT count(1) from answer_info WHERE userId=#{userId}
+    </select>
+
+    <select id="userBookCount" resultType="java.lang.Integer">
+        select count(1) work  from book_info b,classify_info c, user_classify uc where  uc.classifyId=c.id and b.classifyId=uc.classifyId and uc.userId=#{userId}
+    </select>
+
+    <select id="userOpinionCount" resultType="java.lang.Integer">
+        SELECT count(1) from answer_info WHERE userId=#{userId} and opinion is not NULL
+    </select>
+
+    <select id="userAvgReadTime" resultType="java.lang.Integer">
+        SELECT IFNULL(AVG(read_time),0) from kwl_info WHERE userId=#{userId}
+    </select>
+
+    <select id="userAvgQuestionRate" resultType="java.lang.Double">
+        SELECT IFNULL(AVG(ai.rate),0) FROM answer_info ai,question_info qi WHERE ai.questionId=qi.id AND qi.userId=#{userId}
+    </select>
+
+
+    <select id="userBeAnsweredCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM answer_info ai,question_info qi WHERE ai.questionId=qi.id AND qi.userId=#{userId}
+    </select>
+
+</mapper>

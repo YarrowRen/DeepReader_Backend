@@ -1,7 +1,9 @@
 package cn.ywrby.controller;
 
+import cn.hutool.json.JSONObject;
 import cn.ywrby.domain.Book;
 import cn.ywrby.domain.Classify;
+import cn.ywrby.domain.SimpleClassify;
 import cn.ywrby.res.ResultResponse;
 import cn.ywrby.service.BookService;
 import cn.ywrby.utils.Constants;
@@ -38,7 +40,7 @@ public class BookController {
 
 
     @GetMapping("/book/list")
-    public ResultResponse userList(@RequestParam(required=true, defaultValue = "1")Integer page, @RequestParam(required=false,defaultValue="10")Integer pageSize){
+    public ResultResponse bookList(@RequestParam(required=true, defaultValue = "1")Integer page, @RequestParam(required=false,defaultValue="10")Integer pageSize){
         ResultResponse res=new ResultResponse();
         //调用service层方法获得用户列表
         List<Book> list=bookService.getBookList(page,pageSize);
@@ -52,11 +54,42 @@ public class BookController {
         return res;
     }
 
+    @GetMapping("/book/getBookByClassify")
+    public ResultResponse getBookByClassifyId(@RequestParam(required=true)Integer classifyId){
+        ResultResponse res=new ResultResponse();
+        //调用service层方法获得用户列表
+        List<Book> list=bookService.getBookByClassifyId(classifyId);
+        res.setData(list);
+        res.setCode(Constants.STATUS_OK);
+        res.setMessage(Constants.MESSAGE_OK);
+        return res;
+    }
+
     @GetMapping("/book/content")
-    public ResultResponse getBookContent(@RequestParam(required=true, defaultValue = "1000517")Integer bookId){
+    public ResultResponse getBookContent(@RequestParam(required=true)Integer bookId){
         ResultResponse res=new ResultResponse();
         String content = bookService.getBookContent(bookId);
         res.setData(content);
+        res.setCode(Constants.STATUS_OK);
+        res.setMessage(Constants.MESSAGE_OK);
+        return res;
+    }
+
+    @GetMapping("/book/info")
+    public ResultResponse getBookInfo(@RequestParam(required=true)Integer bookId){
+        ResultResponse res=new ResultResponse();
+        Book book = bookService.getBookInfo(bookId);
+        res.setData(book);
+        res.setCode(Constants.STATUS_OK);
+        res.setMessage(Constants.MESSAGE_OK);
+        return res;
+    }
+
+    @GetMapping("/book/classify")
+    public ResultResponse getClassifyList(){
+        ResultResponse res=new ResultResponse();
+        List<SimpleClassify> simpleClassifyList=bookService.getClassify();
+        res.setData(simpleClassifyList);
         res.setCode(Constants.STATUS_OK);
         res.setMessage(Constants.MESSAGE_OK);
         return res;

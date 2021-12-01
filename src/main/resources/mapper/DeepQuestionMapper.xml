@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.DeepQuestionMapper">
+
+    <select id="getQuestionFormByBookId" resultType="QuestionForm">
+        SELECT * from question_info q WHERE q.bookId=#{bookId}
+    </select>
+
+    <insert id="insertAnswerForm"  keyProperty="id" useGeneratedKeys="true" parameterType="AnswerForm">
+        insert into answer_info (userId,bookId,questionId,answer,rate,opinion) values
+        (#{userId},#{bookId},#{questionId},#{answer},#{rate},#{opinion})
+    </insert>
+
+
+</mapper>

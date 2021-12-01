@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--映射文件DTD约束头-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mybatis用户映射文件-->
+<mapper namespace="cn.ywrby.mapper.DiscussionMapper">
+
+    <select id="getDiscussionList" resultType="Discussion">
+        select * from discussion_info
+    </select>
+
+    <select id="getDiscussionById" resultType="Discussion">
+        select * from discussion_info where  id=#{discussionId} limit 1
+    </select>
+
+    <insert id="submitDiscussion"  keyProperty="id" useGeneratedKeys="true" parameterType="Discussion">
+        INSERT INTO discussion_info (userId,classifyId,createTime,topic,content)  VALUES (#{userId},#{classifyId},#{createTime},#{topic},#{content})
+    </insert>
+</mapper>

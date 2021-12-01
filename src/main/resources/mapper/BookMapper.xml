@@ -4,9 +4,7 @@
 
 <!--mybatis用户映射文件-->
 <mapper namespace="cn.ywrby.mapper.BookMapper">
-    <select id="getBookListByUsername" resultType="Book">
-        SELECT b.* from book_info b,user_info u, user_book ub where u.id=ub.userId and b.id=ub.bookId and u.schNum= #{username}
-    </select>
+
 
     <select id="getSimplifyBookListByClassifyId" resultType="Book">
         SELECT b.id,b.name,b.author,b.pages FROM classify_info c,book_info b WHERE c.id=b.classifyId and c.id=#{classifyId}
@@ -18,5 +16,26 @@
 
     <select id="getBookContent" resultType="java.lang.String">
         select content from book_content where bookId=#{bookId}
+    </select>
+
+    <select id="getUserBookList" resultType="Book">
+        select b.*,c.`name` classify_name,c.`work` work  from book_info b,classify_info c, user_classify uc where  uc.classifyId=c.id and b.classifyId=uc.classifyId and uc.userId=#{userId}
+    </select>
+
+    <select id="getBookByClassifyId" resultType="Book">
+        SELECT * FROM book_info b WHERE b.classifyId=#{classifyId}
+    </select>
+
+    <select id="getBookInfo" resultType="Book">
+        SELECT * from book_info b WHERE b.id=#{bookId}
+    </select>
+
+    <select id="getUserHaveReadList" resultType="java.lang.Integer">
+        SELECT bookId FROM user_read ur WHERE ur.userId=#{userId}
+    </select>
+
+
+    <select id="getUserHaveAnswerList" resultType="java.lang.Integer">
+        SELECT bookId FROM user_answer ua WHERE ua.userId=#{userId}
     </select>
 </mapper>

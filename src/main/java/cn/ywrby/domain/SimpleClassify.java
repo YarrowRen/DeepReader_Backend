@@ -11,9 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Classify {
-    private int id;
-    private String name;
-    private String work;
-    private List<Book> children;
+public class SimpleClassify {
+    private String label;
+    private List<Work> children;
 }

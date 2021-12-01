@@ -20,5 +20,9 @@ public class Book {
     private int pages;
     private String brief_introduction;
     private int reading_stage;
-
+    private String classify_name;
+    private String work;
+    private boolean have_read;
+    private boolean have_answer;
+    private String url;
 }

@@ -83,50 +83,6 @@ public class StudentController {
     }
 
 
-    @GetMapping("/stu/bookList")
-    public ResultResponse stuBookInfo(@RequestParam("token") String token){
-        ResultResponse res=new ResultResponse();
-        //验证token的合法和有效性
-        String tokenValue= JwtUtils.verify(token);
-        if(tokenValue!=null && tokenValue.startsWith(JwtUtils.TOKEN_SUCCESS)) {
-            //如果合法则返回用户信息
-            String username = tokenValue.replaceFirst(JwtUtils.TOKEN_SUCCESS, "");
-            List<Book> bookList = bookService.getBookListByUsername(username);
 
-            res.setData(bookList);
-            res.setCode(Constants.STATUS_OK);
-            res.setMessage(Constants.MESSAGE_OK);
-        }else {
-            //否则返回错误状态码
-            res.setCode(Constants.STATUS_FAIL);
-            res.setMessage(Constants.MESSAGE_FAIL);
-        }
-        return res;
-    }
-
-    @PostMapping("/stu/updateBookList")
-    public ResultResponse updateStuBookList(@RequestParam("token") String token, @RequestParam("bookList[]") List<String> bookList){
-        ResultResponse res=new ResultResponse();
-        //验证token的合法和有效性
-        String tokenValue= JwtUtils.verify(token);
-        if(tokenValue!=null && tokenValue.startsWith(JwtUtils.TOKEN_SUCCESS)) {
-            //如果合法则返回用户信息
-            String username = tokenValue.replaceFirst(JwtUtils.TOKEN_SUCCESS, "");
-            boolean result = userService.setUserBookList(username, bookList);
-            if (result) {
-                res.setData("学生图书列表添加成功");
-                res.setCode(Constants.STATUS_OK);
-                res.setMessage(Constants.MESSAGE_OK+" : 学生图书列表添加成功");
-            }else {
-                res.setCode(Constants.STATUS_FAIL);
-                res.setMessage(Constants.MESSAGE_FAIL+"学生已添加图书信息，添加失败");
-            }
-        }else {
-            //否则返回错误状态码
-            res.setCode(Constants.STATUS_FAIL);
-            res.setMessage(Constants.MESSAGE_FAIL);
-        }
-        return res;
-    }
 
 }

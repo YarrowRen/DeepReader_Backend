@@ -1,10 +1,10 @@
 package cn.ywrby.service;
 
 
+import cn.ywrby.domain.KWL;
+import cn.ywrby.domain.QuestionForm;
 import cn.ywrby.domain.User;
 import cn.ywrby.domain.UserClass;
-
-import java.util.List;
 
 public interface UserService {
 
@@ -34,5 +34,11 @@ public interface UserService {
      */
     public boolean updateUserInfo(String username, String name, String oldPassword, String newPassword);
 
-    public boolean setUserBookList(String username, List<String> bookIdList);
+    boolean insertKWLForm(KWL kwl);
+
+    void insertUserRead(int id, int bookId);
+
+    boolean insertQuestionForm(QuestionForm question);
+
+    void insertUserAnswer(int userId, int bookId);
 }

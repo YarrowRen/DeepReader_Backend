@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface ClassifyMapper {
     public List<Classify> getClassifyList();
+
+    Classify findClassifyById(int classifyId);
 }

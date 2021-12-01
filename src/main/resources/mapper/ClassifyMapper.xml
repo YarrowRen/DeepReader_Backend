@@ -7,4 +7,8 @@
     <select id="getClassifyList" resultType="Classify">
         SELECT * FROM classify_info
     </select>
+
+    <select id="findClassifyById" resultType="Classify">
+        select * from classify_info where id= #{id} limit 1
+    </select>
 </mapper>

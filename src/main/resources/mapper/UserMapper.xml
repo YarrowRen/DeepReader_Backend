@@ -16,6 +16,14 @@
         select * from user_info where schNum= #{username} limit 1
     </select>
 
+    <select id="findUserById" resultType="User">
+        select * from user_info where id= #{id} limit 1
+    </select>
+
+    <select id="getUserPermission" resultType="Integer">
+        SELECT p.permissionId FROM permission_info p WHERE p.userId=#{userId}
+    </select>
+
     <select id="findClassByUsername" resultType="UserClass">
         SELECT m.major,c.college,uc.clsNo
         from major_info m,college_info c,user_cls uc,user_info u
@@ -29,7 +37,21 @@
         update user_info set name=#{name},pwd=#{password} where schNum=#{username}
     </update>
 
-    <insert id="insertUserBookList">
-        insert into user_book values (#{userId}, #{bookId})
+    <insert id="insertKWLForm"  keyProperty="id" useGeneratedKeys="true" parameterType="KWL">
+        INSERT INTO kwl_info (userId,bookId,preKnown,QA,rate,summary,read_time)  VALUES (#{userId},#{bookId},#{preKnown},#{QA},#{rate},#{summary},#{read_time})
     </insert>
+
+    <insert id="insertUserRead">
+        insert into user_read values (#{userId},#{bookId})
+    </insert>
+
+    <insert id="insertUserAnswer">
+        insert into user_answer values (#{userId},#{bookId})
+    </insert>
+
+    <insert id="insertQuestionForm"  keyProperty="id" useGeneratedKeys="true" parameterType="QuestionForm">
+        insert into question_info (question,type,answer,clues,robotQuestion,rate,modifyQuestion,userId,bookId) values
+        (#{question},#{type},#{answer},#{clues},#{robotQuestion},#{rate},#{modifyQuestion},#{userId},#{bookId})
+    </insert>
+
 </mapper>

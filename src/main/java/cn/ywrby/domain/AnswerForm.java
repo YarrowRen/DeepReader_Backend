@@ -5,15 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Classify {
+public class AnswerForm {
     private int id;
-    private String name;
-    private String work;
-    private List<Book> children;
+    private int userId;
+    private int bookId;
+    private int questionId;
+    private String answer;
+    private int rate;
+    private String opinion;
 }

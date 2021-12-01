@@ -5,15 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Classify {
-    private int id;
-    private String name;
-    private String work;
-    private List<Book> children;
+public class Log {
+    private int userId;
+    private int bookId;
+    private int book_selection_click;
+    private int book_read_time;
+    private int book_exam_click;
 }

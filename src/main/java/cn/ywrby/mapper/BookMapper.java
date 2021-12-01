@@ -11,9 +11,17 @@ public interface BookMapper {
 
     public List<Book> getBookList();
 
-    public List<Book> getBookListByUsername(@Param("username")String username);
-
     public List<Book> getSimplifyBookListByClassifyId(@Param("classifyId")int classifyId);
 
     public String getBookContent(@Param("bookId")int bookId);
+
+    List<Book> getUserBookList(@Param("userId")int userId);
+
+    Book getBookInfo(@Param("bookId")int bookId);
+
+    List<Integer> getUserHaveReadList(@Param("userId")int userId);
+
+    List<Integer> getUserHaveAnswerList(@Param("userId")int userId);
+
+    List<Book> getBookByClassifyId(@Param("classifyId")int classifyId);
 }

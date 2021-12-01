@@ -1,14 +1,13 @@
 package cn.ywrby.service.impl;
 
-import cn.ywrby.domain.Book;
-import cn.ywrby.domain.User;
-import cn.ywrby.domain.UserClass;
+import cn.ywrby.domain.*;
 import cn.ywrby.mapper.BookMapper;
 import cn.ywrby.mapper.UserMapper;
 import cn.ywrby.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,6 +36,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUsername(String username) {
         User user = userMapper.findUserByUsername(username);
+        List<Integer> permissionList=userMapper.getUserPermission(user.getId());
+        List<String> roles=new ArrayList<>();
+        for(int i:permissionList){
+            if (i==0){
+                roles.add("editor");
+            }else if (i==1){
+                roles.add("admin");
+            }
+        }
+        //List<String> roles= Arrays.asList("admin","editor");
+        user.setRoles(roles);
         return user;
     }
 
@@ -61,18 +71,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean setUserBookList(String username, List<String> bookIdList) {
-        User user = userMapper.findUserByUsername(username);
-        List<Book> listResult = bookMapper.getBookListByUsername(username);
-        System.out.println(listResult);
-        if(listResult.size()==0) {
-            for (String bookId : bookIdList) {
-                userMapper.insertUserBookList(user.getId(), bookId);
-            }
+    public boolean insertKWLForm(KWL kwl) {
+        int kwlId=userMapper.insertKWLForm(kwl);
+        System.out.println(kwlId);
+        if(kwlId!=0){
             return true;
         }else {
             return false;
         }
     }
+
+    @Override
+    public void insertUserRead(int userId, int bookId) {
+        userMapper.insertUserRead(userId,bookId);
+    }
+
+    @Override
+    public boolean insertQuestionForm(QuestionForm question) {
+        int questionId= userMapper.insertQuestionForm(question);
+        System.out.println(questionId);
+        if(questionId!=0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public void insertUserAnswer(int userId, int bookId) {
+        userMapper.insertUserAnswer(userId,bookId);
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package cn.ywrby.mapper;
 
+import cn.ywrby.domain.KWL;
+import cn.ywrby.domain.QuestionForm;
 import cn.ywrby.domain.User;
 import cn.ywrby.domain.UserClass;
 import org.apache.ibatis.annotations.Mapper;
@@ -36,5 +38,15 @@ public interface UserMapper {
      */
     public void updateUserInfo(String username, String name,String password);
 
-    public void insertUserBookList(@Param("userId") int userId,@Param("bookId") String bookId);
+    int insertKWLForm(KWL kwl);
+
+    void insertUserRead(int userId, int bookId);
+
+    int insertQuestionForm(QuestionForm question);
+
+    void insertUserAnswer(int userId, int bookId);
+
+    User findUserById(int userId);
+
+    List<Integer> getUserPermission(int userId);
 }
