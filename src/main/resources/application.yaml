@@ -14,6 +14,10 @@ spring:
     url: jdbc:mysql://localhost:3306/bookstore
     username: root
     password: renboyu010214
+  # 配置上传文件信息
+  servlet:
+    multipart:
+      max-file-size: 100MB
 
 mybatis:
   # 配置实体类别名 包路径
@@ -23,3 +27,6 @@ mybatis:
   # 配置日志文件
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+upload:
+  path: C:\DeepReaderArticleData\
