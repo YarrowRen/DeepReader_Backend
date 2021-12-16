@@ -1,10 +1,9 @@
 package cn.ywrby.service;
 
 
-import cn.ywrby.domain.KWL;
-import cn.ywrby.domain.QuestionForm;
-import cn.ywrby.domain.User;
-import cn.ywrby.domain.UserClass;
+import cn.ywrby.domain.*;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -41,4 +40,6 @@ public interface UserService {
     boolean insertQuestionForm(QuestionForm question);
 
     void insertUserAnswer(int userId, int bookId);
+
+    List<Heat> getUserHeat(int userId);
 }

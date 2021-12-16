@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -145,6 +146,7 @@ public class UserController {
             kwl.setRate((Integer) summary.get("rate"));
             kwl.setSummary((String) summary.get("content"));
             kwl.setRead_time(time);
+            kwl.setFinish_time(new Date());
             //插入用户KWL表格
             boolean result=userService.insertKWLForm(kwl);
             //boolean result=true;
@@ -194,6 +196,7 @@ public class UserController {
             QF.setBookId(bookId);
             QF.setRate(rate);
             QF.setType(type);
+            QF.setFinish_time(new Date());
             boolean result = userService.insertQuestionForm(QF);
             if(result){
                 res.setCode(Constants.STATUS_OK);
@@ -206,6 +209,30 @@ public class UserController {
             //否则返回错误状态码
             res.setCode(Constants.STATUS_FAIL);
             res.setMessage(Constants.MESSAGE_FAIL+"登录信息已失效，请重新登录后提交");
+        }
+        return res;
+    }
+
+    @GetMapping("/user/heat")
+    public ResultResponse getUserHeat(@RequestParam("token") String token){
+        ResultResponse res=new ResultResponse();
+        //验证token的合法和有效性
+        String tokenValue=JwtUtils.verify(token);
+
+        if(tokenValue!=null && tokenValue.startsWith(JwtUtils.TOKEN_SUCCESS)) {
+            //如果合法则返回用户信息
+            String username = tokenValue.replaceFirst(JwtUtils.TOKEN_SUCCESS, "");
+            User user = userService.findUserByUsername(username);
+            user.setUsername(username);
+            //调用service层方法获得用户图书列表
+            List<Heat> heatList=userService.getUserHeat(user.getId());
+            res.setData(heatList);
+            res.setCode(Constants.STATUS_OK);
+            res.setMessage(Constants.MESSAGE_OK);
+        }else {
+            //否则返回错误状态码
+            res.setCode(Constants.STATUS_FAIL);
+            res.setMessage(Constants.MESSAGE_FAIL);
         }
         return res;
     }

@@ -38,7 +38,7 @@
     </update>
 
     <insert id="insertKWLForm"  keyProperty="id" useGeneratedKeys="true" parameterType="KWL">
-        INSERT INTO kwl_info (userId,bookId,preKnown,QA,rate,summary,read_time)  VALUES (#{userId},#{bookId},#{preKnown},#{QA},#{rate},#{summary},#{read_time})
+        INSERT INTO kwl_info (userId,bookId,preKnown,QA,rate,summary,read_time,finish_time)  VALUES (#{userId},#{bookId},#{preKnown},#{QA},#{rate},#{summary},#{read_time},#{finish_time})
     </insert>
 
     <insert id="insertUserRead">
@@ -50,8 +50,14 @@
     </insert>
 
     <insert id="insertQuestionForm"  keyProperty="id" useGeneratedKeys="true" parameterType="QuestionForm">
-        insert into question_info (question,type,answer,clues,robotQuestion,rate,modifyQuestion,userId,bookId) values
-        (#{question},#{type},#{answer},#{clues},#{robotQuestion},#{rate},#{modifyQuestion},#{userId},#{bookId})
+        insert into question_info (question,type,answer,clues,robotQuestion,rate,modifyQuestion,userId,bookId,finish_time) values
+        (#{question},#{type},#{answer},#{clues},#{robotQuestion},#{rate},#{modifyQuestion},#{userId},#{bookId},#{finish_time})
     </insert>
+    
+    <select id="getUserHeat" resultType="Heat">
+        SELECT date,SUM(1) heat FROM (SELECT DATE_FORMAT(finish_time,'%Y-%m-%d') date  FROM question_info qi WHERE userId=#{userId}  union all
+            SELECT DATE_FORMAT(finish_time,'%Y-%m-%d') date  FROM kwl_info ki WHERE userId=#{userId}  union all
+            SELECT DATE_FORMAT(finish_time,'%Y-%m-%d') date  FROM answer_info ai WHERE userId=#{userId} ) temp GROUP BY date
+    </select>
 
 </mapper>

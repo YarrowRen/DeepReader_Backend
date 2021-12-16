@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,5 @@ public class QuestionForm {
     private String modifyQuestion;
     private int userId;
     private int bookId;
-
+    private Date finish_time;
 }

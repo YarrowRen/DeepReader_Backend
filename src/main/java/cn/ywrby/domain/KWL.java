@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,5 @@ public class KWL {
     private int rate;
     private String summary;
     private int read_time;
+    private Date finish_time;
 }

@@ -1,9 +1,6 @@
 package cn.ywrby.mapper;
 
-import cn.ywrby.domain.KWL;
-import cn.ywrby.domain.QuestionForm;
-import cn.ywrby.domain.User;
-import cn.ywrby.domain.UserClass;
+import cn.ywrby.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -49,4 +46,6 @@ public interface UserMapper {
     User findUserById(int userId);
 
     List<Integer> getUserPermission(int userId);
+
+    List<Heat> getUserHeat(int userId);
 }

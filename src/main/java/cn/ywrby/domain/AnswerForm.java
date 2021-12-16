@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,5 @@ public class AnswerForm {
     private String answer;
     private int rate;
     private String opinion;
+    private Date finish_time;
 }

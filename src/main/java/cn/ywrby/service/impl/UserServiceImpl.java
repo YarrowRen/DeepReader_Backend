@@ -102,5 +102,11 @@ public class UserServiceImpl implements UserService {
         userMapper.insertUserAnswer(userId,bookId);
     }
 
+    @Override
+    public List<Heat> getUserHeat(int userId) {
+        List<Heat> userHeat = userMapper.getUserHeat(userId);
+        return userHeat;
+    }
+
 
 }

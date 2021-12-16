@@ -10,8 +10,8 @@
     </select>
 
     <insert id="insertAnswerForm"  keyProperty="id" useGeneratedKeys="true" parameterType="AnswerForm">
-        insert into answer_info (userId,bookId,questionId,answer,rate,opinion) values
-        (#{userId},#{bookId},#{questionId},#{answer},#{rate},#{opinion})
+        insert into answer_info (userId,bookId,questionId,answer,rate,opinion,finish_time) values
+        (#{userId},#{bookId},#{questionId},#{answer},#{rate},#{opinion},#{finish_time})
     </insert>
 
 
