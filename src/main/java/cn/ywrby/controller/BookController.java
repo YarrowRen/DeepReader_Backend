@@ -21,6 +21,7 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+    //获取分类和数目列表
     @GetMapping("/book/classifyAndBookList")
     public ResultResponse getClassifyAndBookList(){
         ResultResponse res=new ResultResponse();
